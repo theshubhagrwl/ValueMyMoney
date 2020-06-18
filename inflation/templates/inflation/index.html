@@ -1,8 +1,7 @@
 {% extends 'inflation/base.html' %} {%block content%}
 
 <div class="row">
-  <form method="POST" action="{% url 'graph' %}" id="mainForm">
-    {% csrf_token %}
+  <form method="GET" action="{% url 'graph' %}">
     <div class="col s12 l4">
       <label>Start Date</label>
       <input
@@ -13,6 +12,7 @@
         max="2018"
         step="1"
         placeholder="Enter a year between 1960 and 2018"
+        required
       />
     </div>
     <div class="col s12 l4">
@@ -25,6 +25,7 @@
         max="2018"
         step="1"
         placeholder="Enter a year between 1960 and 2018"
+        required
       />
     </div>
     <div class="col s12 l4">
@@ -36,6 +37,7 @@
         min="0"
         step="100"
         placeholder="Enter an amount whose changed value you want to see "
+        required
       />
     </div>
     <button

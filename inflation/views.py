@@ -14,10 +14,14 @@ def Home(request):
 
 
 def graph(request):
-    start_date = request.POST.get('start_date')
-    end_date = request.POST.get('end_date')
-    amount = request.POST.get('amount')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    amount = request.GET.get('amount')
 
+    year_list = []
+    for i in range(int(start_date), int(end_date)+1):
+        year_list.append(i)
+    # print(year_list)
     principal_amt = float(amount)
 
     start_date = start_date + "-12-" + "31"
@@ -37,12 +41,16 @@ def graph(request):
 
     final_amount += principal_amt
 
+    zipped_date = zip(year_list, list_for_p, inflation_list)
+
     context = {
         'start_date': start_date,
         'end_date': end_date,
         'amount': amount,
         'final_amount': final_amount,
-        'yearly_list' : list_for_p,
+        'yearly_list': list_for_p,
+        'year_list': year_list,
+        'zipped_data': zipped_date,
+        'inflation_list': inflation_list,
     }
-    print(start_date, end_date)
     return render(request, 'inflation/graph.html', context)

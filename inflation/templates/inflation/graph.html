@@ -2,15 +2,60 @@
 
 <div class="row">
   <div class="col s12 l6">
-    <div>
-      {{start_date}} {{end_date}} {{amount}} {{final_amount}}
+    <div style="margin-right: 15px; padding-right: 15px;">
+      <h3>Here are your details</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Start End</th>
+            <th>End Date</th>
+            <th>Initial Amount</th>
+            <th>Final Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{start_date}}</td>
+            <td>{{end_date}}</td>
+            <td>₹{{amount}}</td>
+            <td>₹{{final_amount|floatformat:2}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
     </div>
-    {{yearly_list}}
+    <div style="margin-right: 15px; padding-right: 15px;">
+      <h3>Year wise details</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Amount</th>
+            <th>Inflation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i,j,k in zipped_data %}
+          <tr>
+            <td>{{i}}</td>
+            <td>₹{{j|floatformat:2}}</td>
+            <td>{{k}}%</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br />
+    </div>
   </div>
   <div class="col s12 l6">
     Graph Here
   </div>
 </div>
-<a href="/" class="waves-effect waves-light btn">Go back</a>
+<a href="/" class="waves-effect waves-light btn"
+  ><i class="material-icons" style="vertical-align: top;"> arrow_back</i>
+  <span>
+    Edit Year or Amount
+  </span>
+</a>
 
 {% endblock %}

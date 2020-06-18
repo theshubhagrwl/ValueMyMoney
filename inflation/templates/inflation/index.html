@@ -1,24 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- {% comment %} {{df | safe}}
-    <hr>
-    {{head | safe}} {% endcomment %} -->
+{% extends 'inflation/base.html' %} {%block content%}
 
-    <form method="POST" action="{% url 'graph' %}">
-      {% csrf_token %}
+<div class="row">
+  <form method="POST" action="{% url 'graph' %}" id="mainForm">
+    {% csrf_token %}
+    <div class="col s12 l4">
       <label>Start Date</label>
-      <input id="start_date" type="text" name="start_date" />
+      <input
+        id="start_date"
+        type="number"
+        name="start_date"
+        min="1960"
+        max="2018"
+        step="1"
+        placeholder="Enter a year between 1960 and 2018"
+      />
+    </div>
+    <div class="col s12 l4">
       <label>End Date</label>
-      <input id="end_date" type="text" name="end_date" />
+      <input
+        id="end_date"
+        type="number"
+        name="end_date"
+        min="1960"
+        max="2018"
+        step="1"
+        placeholder="Enter a year between 1960 and 2018"
+      />
+    </div>
+    <div class="col s12 l4">
       <label>Amount</label>
-      <input id="amount" type="number" name="amount" />
-      <input type="submit" value="Submit" />
-    </form>
-  </body>
-</html>
+      <input
+        id="amount"
+        type="number"
+        name="amount"
+        min="0"
+        step="100"
+        placeholder="Enter an amount whose changed value you want to see "
+      />
+    </div>
+    <button
+      class="waves-effect waves-light btn z-depth-2"
+      type="submit"
+      style="margin: 10px;"
+    >
+      Find Value of Your Money
+    </button>
+  </form>
+</div>
+
+{% endblock %}

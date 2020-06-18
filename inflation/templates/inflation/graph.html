@@ -9,7 +9,7 @@
         labels: [{% for year in year_list %} '{{year}}', {%endfor%}],
         datasets: [
           {
-            label: "Change In Money Value",
+            label: "Inflation in %",
             data: [{% for inflation in inflation_list%} '{{inflation}}', {% endfor %}],
             backgroundColor:[{% for color in color_list%} '{{color}}', {% endfor %}],
             borderColor:
@@ -19,6 +19,9 @@
         ],
       },
       options: {
+          legend : {
+              display :false
+          },
         scales: {
           yAxes: [
             {

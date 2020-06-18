@@ -1,4 +1,39 @@
-{% extends 'inflation/base.html' %} {%block content%}
+{% extends 'inflation/base.html' %} {% block scripts %}
+
+<script>
+  $(document).ready(function () {
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: [{% for year in year_list %} '{{year}}', {%endfor%}],
+        datasets: [
+          {
+            label: "Change In Money Value",
+            data: [{% for inflation in inflation_list%} '{{inflation}}', {% endfor %}],
+            backgroundColor:[{% for color in color_list%} '{{color}}', {% endfor %}],
+            borderColor:
+            [{% for color in color_list%} '{{color}}', {% endfor %}],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+  });
+</script>
+
+{% endblock scripts %} {% block content%}
 
 <div class="row">
   <div class="col s12 l6">
@@ -46,16 +81,22 @@
       </table>
       <br />
     </div>
+    <a href="/" class="waves-effect waves-light btn"
+      ><i class="material-icons" style="vertical-align: top;"> arrow_back</i>
+      <span>
+        Edit Year or Amount
+      </span>
+    </a>
   </div>
   <div class="col s12 l6">
-    Graph Here
+    <h3>A Graphical Representation</h3>
+    <canvas
+      id="myChart"
+      width="200"
+      height="200"
+      style="padding: 30px; margin-bottom: 50px;"
+    ></canvas>
   </div>
 </div>
-<a href="/" class="waves-effect waves-light btn"
-  ><i class="material-icons" style="vertical-align: top;"> arrow_back</i>
-  <span>
-    Edit Year or Amount
-  </span>
-</a>
 
 {% endblock %}

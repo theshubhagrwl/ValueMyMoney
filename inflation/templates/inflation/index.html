@@ -1,6 +1,14 @@
 {% extends 'inflation/base.html' %} {%block content%}
 
-<div class="row">
+<div
+  class="row center container"
+  style="margin-top: 20px;"
+>
+<h3 class="header">Welcome to Value My Money</h3>
+</div>
+<br>
+
+<div class="row" style="padding: 20px; margin: 20px;">
   <form method="GET" action="{% url 'graph' %}">
     <div class="col s12 l4">
       <label>Start Date</label>
@@ -48,6 +56,32 @@
       Find Value of Your Money
     </button>
   </form>
+</div>
+
+<div
+  class="row center container teal white-text z-depth-3"
+  style="margin-top: 50px;"
+>
+  <h3 class="header" style="padding: 15px 20px 0px 20px;">
+    Confused What To do? <hr / style="width: 20rem;">
+  </h3>
+  <div class="container" style="font-size: 20px;">
+    <p class="flow-text" style="font-size: 25px;">What is Inflation?</p>
+    <hr / style="width: 5rem;">
+    <p class="flow-text" style="font-size: inherit;">
+      Inflation is a sustained increase in the general price level of goods and
+      services in an economy over a period of time.
+    </p>
+    <p class="flow-text" style="font-size: inherit;">
+      So in layman terms: If you have ₹100 today and inflation is 2% then next
+      year its value will decrease by 2% so you will have to pay ₹102 <br />
+      This tool helps you to figure out what was the value of money in the past (only depends on inflation)
+      <p style="font-size: 15px;">
+        A point to note here is that the price of things depend on many other
+        factors not just infaltion.
+      </p>
+    </p>
+  </div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn inflation_analyser.wsgi --log-file -
